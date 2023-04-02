@@ -3,10 +3,21 @@
 @section('title') Index @endsection
 
 @section('content')
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
     <div class="text-center">
     <a href="/posts/create" class="mt-4 btn btn-success">Create Post</a>
     </div>
-    <table class="table mt-4">
+    <table class="table table-striped table-dark mt-4">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -36,6 +47,7 @@
 
         </tbody>
     </table>
+    <script>$('.alert').alert()</script>
 
 @endsection
 

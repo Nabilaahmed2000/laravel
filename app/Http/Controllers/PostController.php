@@ -63,6 +63,7 @@ public function store()
     {
 
         return view('posts.index', ['posts'=> $this -> allPosts]);
+        return redirect('/posts')->with('success', 'Your posts has been created successfully!');
     }
 public function edit()
     {
@@ -72,12 +73,15 @@ public function edit()
 public function update()
     {
         //do some actionto update post
-        return view('posts.index', ['posts'=> $this -> allPosts]);
+        // return view('posts.index', ['posts'=> $this -> allPosts]);
+        return redirect('/posts')->with('success', 'Your posts has been updated successfully!');
     }
 public function delete()
     {
         //do some actionto delete post
-        return view('posts.index', ['posts'=> $this -> allPosts]);
+        // return view('posts.index', ['posts'=> $this -> allPosts]);
+        return redirect('/posts')->with('error', 'Are You Sure You Want To Delete This Post !!');
+
     }
 
 }
