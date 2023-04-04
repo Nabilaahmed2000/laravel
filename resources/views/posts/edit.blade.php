@@ -1,25 +1,33 @@
 @extends('layouts.app')
 
 @section('title') Create @endsection
+@foreach ($post as $post)
+@php    
+        $id=$post->id ;
+        $title=$post->title;
+        $description=$post->description;
 
+@endphp
+@endforeach
 @section('content')
-    <form action="{{route('posts.update')}}" method="PUT">
+<form action="{{route('posts.update',$id)}}" method="POST">
     @csrf
-        @method('POST')
+        @method('PUT')
         <div class="mb-3">
             <label class="form-label">Title</label>
-            <input  type="text" class="form-control" >
+            <input name="title" type="text" class="form-control" >
         </div>
-        <!-- <div class="mb-3">
+        <div class="mb-3">
             <label  class="form-label">Description</label>
-            <textarea class="form-control"  rows="3"></textarea>
-        </div> -->
+            <textarea name="description" class="form-control"  rows="3"></textarea>
+        </div>
 
         <div class="mb-3">
-            <label  class="form-label">Post Creator</label>
-            <select class="form-control">
-                <option value="1">Nabila</option>
-                <option value="2">Ahmed</option>
+        <label  class="form-label">Post Creator</label>
+            <select name="post_creator" class="form-control">
+            @foreach ($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
             </select>
         </div>
 

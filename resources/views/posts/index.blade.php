@@ -33,21 +33,27 @@
             <tr>
                 <td>{{$post['id']}}</td>
                 <td>{{$post['title']}}</td>
-                <td>{{$post['posted_by']}}</td>
-                <td>{{$post['created_at']}}</td>
+                <td>{{ isset($post->user) ? $post->user->name : 'Not Found' }}</td>
+                <td>{{ $post->created_at->format("Y-m-d")}}</td>
                 <td>
                     <a href="/posts/{{$post['id']}}" class="btn btn-info">View</a>
-                    <a href="/posts/edit/{{$post['id']}}" class="btn btn-primary">Edit</a>
-                    <a href="/posts/delete/{{$post['id']}}" class="btn btn-danger">Delete</a>
+                    <a href="{{route('posts.edit',$post['id'])}}" class="btn btn-primary">Edit</a>
+                    <a href="/posts/delete/{{$post['id']}}" id='delete' class="btn btn-danger">Delete</a>
                 </td>
             </tr>
-
         @endforeach
-
-
         </tbody>
     </table>
-    <script>$('.alert').alert()</script>
+    {{ $posts->links() }}
+    <script>
+            const del=document.getElementById('delete');
+            del.addEventListener('click',function(e){
+                const c=confirm("You Sure Continue Deleted !");
+                if(c == false){
+                    e.preventDefault();
+                }
+            })
+        </script>
 
 @endsection
 
