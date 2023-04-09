@@ -3,11 +3,11 @@
 @section('title') Show @endsection
 
 @section('content')
-    <div class="card mt-4 text-dark">
+    <div class="card mt-4 ">
         <div class="card-header">
             Post Info
         </div>
-        <div class="card-body text-dark">
+        <div class="card-body ">
         <h5 class="card-title">Title:</h5>
         <p class="card-text">{{$post->title}}</p>
         <h5 class="card-title">Description:</h5>
@@ -15,11 +15,11 @@
         </div>
     </div>
 
-    <div class="card mt-4 text-dark">
+    <div class="card mt-4 ">
         <div class="card-header">
             Post Creator Info
         </div>
-        <div class="card-body text-dark">
+        <div class="card-body ">
         <h5 class="card-title ">Name:-<small class="fw-normal">{{$user->name}}</small></h5>
         <h5 class="card-title">Email:- <small class="fw-normal">{{$user->email}}</small></h5>
         <h5 class="card-title">Created At:- <small class="fw-normal">{{$user->created_at}}</small></h5>

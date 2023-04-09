@@ -17,13 +17,15 @@
     <div class="text-center">
     <a href="/posts/create" class="mt-4 btn btn-success">Create Post</a>
     </div>
-    <table class="table table-striped table-dark mt-4">
+    <table class="table table-striped  mt-4">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Posted By</th>
             <th scope="col">Created At</th>
+            <th scope="col">Image</th>
+            <th scope="col">Slug</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -35,25 +37,33 @@
                 <td>{{$post['title']}}</td>
                 <td>{{ isset($post->user) ? $post->user->name : 'Not Found' }}</td>
                 <td>{{ $post->created_at->format("Y-m-d")}}</td>
+                <td>{{$post['image']}}</td>
+                <td>{{$post['slug']}}</td>
                 <td>
                     <a href="/posts/{{$post['id']}}" class="btn btn-info">View</a>
                     <a href="{{route('posts.edit',$post['id'])}}" class="btn btn-primary">Edit</a>
-                    <a href="/posts/delete/{{$post['id']}}" id='delete' class="btn btn-danger">Delete</a>
+                    <form action="{{route('posts.delete',$post['id'])}}" method="POST" style="display: inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" 
+                        onclick="return confirm('You Sure Continue Deleted ?')">Delete</button>
+                    </form>
+                    <!-- <a href="/posts/delete/{{$post['id']}}" id='delete' class="btn btn-danger">Delete</a> -->
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
     {{ $posts->links() }}
-    <script>
+    <!-- <script>
             const del=document.getElementById('delete');
             del.addEventListener('click',function(e){
-                const c=confirm("You Sure Continue Deleted !");
+                var c=confirm("You Sure Continue Deleted !");
                 if(c == false){
                     e.preventDefault();
                 }
             })
-        </script>
+    </script> -->
 
 @endsection
 
